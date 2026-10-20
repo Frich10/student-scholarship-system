@@ -1,0 +1,252 @@
+/* ==========================================================================
+   Scholarship Monitoring: styles
+   ========================================================================== */
+
+/* Design tokens ----------------------------------------------------------- */
+:root {
+  --ink: #1d2b2a;
+  --muted: #5d6b69;
+  --bg: #f3f6f5;
+  --card: #ffffff;
+  --line: #d3dcda;
+  --accent: #0b6b5c;
+  --good: #1d7a3e;
+  --bad: #a4262c;
+  --warn: #8a5a00;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e6efed;
+    --muted: #9fb1ae;
+    --bg: #121a19;
+    --card: #1a2423;
+    --line: #2d3b39;
+    --accent: #4cc9b0;
+    --good: #6fdc94;
+    --bad: #ff8087;
+    --warn: #f1c05d;
+  }
+}
+
+/* Base -------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 15px/1.5 "Segoe UI", system-ui, sans-serif;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h2,
+h3 {
+  margin: 1rem 0 0.5rem;
+}
+
+section > * {
+  margin-bottom: 1rem;
+}
+
+small {
+  display: block;
+  color: var(--muted);
+}
+
+:focus-visible {
+  outline: 3px solid var(--warn);
+  outline-offset: 1px;
+}
+
+/* Header and messages ------------------------------------------------------ */
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--accent);
+  color: #fff;
+}
+
+.app-header h1 {
+  flex: 1;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.app-header button {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+#msg {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  margin: 0;
+  padding: 0.6rem 1.2rem;
+  color: #fff;
+}
+
+#msg.ok {
+  background: var(--good);
+}
+
+#msg.bad {
+  background: var(--bad);
+}
+
+/* Forms and controls ------------------------------------------------------- */
+form {
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+input,
+select,
+button {
+  padding: 0.45rem 0.6rem;
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font: inherit;
+}
+
+button {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+button.ghost {
+  background: none;
+  color: var(--accent);
+}
+
+button.small {
+  margin: 1px;
+  padding: 0.15rem 0.45rem;
+  font-size: 0.8rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.7rem;
+  margin-bottom: 0.8rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+
+#auth form {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 360px;
+  margin: 2rem auto;
+}
+
+/* Dashboard ---------------------------------------------------------------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.7rem;
+}
+
+.stats div {
+  padding: 0.6rem 0.8rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+}
+
+.stats b {
+  display: block;
+  font-size: 1.8rem;
+}
+
+/* Tables ------------------------------------------------------------------- */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  font-size: 0.85rem;
+}
+
+th,
+td {
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+/* Status badges ------------------------------------------------------------ */
+.badge {
+  display: inline-block;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid currentColor;
+  border-radius: 9px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.Verified,
+.Compliant,
+.Approved {
+  color: var(--good);
+}
+
+.Returned,
+.WithDeficiency,
+.Held {
+  color: var(--bad);
+}
+
+.Pending,
+.NotEvaluated,
+.None {
+  color: var(--warn);
+}
+
+/* History dialog ----------------------------------------------------------- */
+dialog {
+  width: 92%;
+  max-width: 620px;
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}

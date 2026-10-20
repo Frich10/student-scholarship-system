@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scholarship Monitoring</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Scholarship Monitoring</h1>
+      <span id="who"></span>
+      <button id="out" type="button" hidden>Log out</button>
+    </header>
+
+    <p id="msg" role="status" hidden></p>
+
+    <main>
+      <section id="auth">
+        <form id="login">
+          <h2>Log in</h2>
+          <label>
+            Email
+            <input id="em" type="email" required />
+          </label>
+          <label>
+            Password
+            <input id="pw" type="password" minlength="6" required />
+          </label>
+          <div class="row">
+            <button type="submit">Log in</button>
+            <button type="button" id="signup" class="ghost">Create account</button>
+          </div>
+          <small>Scholars: sign up with the email staff registered for you.</small>
+        </form>
+      </section>
+
+      <!-- Scholar view -->
+      <section id="scholar" hidden>
+        <h2>My award</h2>
+        <p id="prog"></p>
+
+        <form id="sf" novalidate>
+          <h3 id="sft">Submit semester grades</h3>
+          <div class="grid">
+            <label>Academic year <input name="year" placeholder="2026-2027" /></label>
+            <label>
+              Semester
+              <select name="sem">
+                <option>1</option>
+                <option>2</option>
+              </select>
+            </label>
+            <label>GWA (1.00 is best) <input name="gwa" type="number" step="0.01" /></label>
+            <label>Enrolled units <input name="units" type="number" /></label>
+            <label>Failed subjects <input name="failed" type="number" /></label>
+            <label>Incomplete grades <input name="inc" type="number" /></label>
+            <label>Dropped subjects <input name="drop" type="number" /></label>
+            <label>
+              Grade-document reference
+              <input name="ev" placeholder="e.g. GRADES-2026-0001.pdf" />
+            </label>
+          </div>
+          <div class="row">
+            <button type="submit">Submit</button>
+            <button type="button" id="cancel" class="ghost" hidden>Cancel correction</button>
+          </div>
+        </form>
+
+        <h3>My submissions</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Term</th>
+                <th>GWA</th>
+                <th>Units / Failed / INC / Dropped</th>
+                <th>Submission</th>
+                <th>Compliance</th>
+                <th>Renewal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="mine"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Staff view -->
+      <section id="staff" hidden>
+        <div class="row">
+          <label>Semester <select id="sem"></select></label>
+        </div>
+
+        <div class="stats" id="stats"></div>
+
+        <div class="row">
+          <input id="q" type="search" placeholder="Search name or student ID" />
+          <select id="fp">
+            <option value="">All programs</option>
+          </select>
+          <select id="fc">
+            <option value="">All compliance</option>
+            <option>Not Evaluated</option>
+            <option>Compliant</option>
+            <option>With Deficiency</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Scholar</th>
+                <th>Program</th>
+                <th>GWA</th>
+                <th>Units / Failed / INC / Dropped</th>
+                <th>Submitted (Manila)</th>
+                <th>Submission</th>
+                <th>Compliance</th>
+                <th>Renewal</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+
+        <form id="rf">
+          <h3>Register scholar</h3>
+          <div class="grid">
+            <label>Email <input name="email" type="email" required /></label>
+            <label>Full name <input name="name" required /></label>
+            <label>Student ID <input name="sid" required /></label>
+            <label>Program <select name="prog" id="rp"></select></label>
+          </div>
+          <button type="submit">Register and assign</button>
+        </form>
+      </section>
+    </main>
+
+    <dialog id="dlg"></dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
